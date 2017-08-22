@@ -4,10 +4,12 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var path = require("path");
-var cheerio = require("cheerio")
+var Trade = require("./models/trade.js");
+var User = require("./models/user.js");
+//var cheerio = require("cheerio")
 var bodyParser = require("body-parser");
 // Bring in the Scrape function from our scripts directory
-var scrape = require("./scripts/scrape.js");
+//var scrape = require("./scripts/scrape.js");
 
 // Bring article and notes from the controller
 // var articleController = require("./controllers/article");
@@ -28,27 +30,39 @@ app.set('view engine', 'html');
 
 // Use bodyParser in our app
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
 
 // Have every request go through our router middleware
 app.use(router);
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var db = process.env.MONGODB_URI || "mongodb://localhost/mongoTrades";
 
 // Connect mongoose to our database
-mongoose.connect(db, function(error) {
-  // Log any errors connecting with mongoose
-  if (error) {
-    console.log(error);
-  }
-  // Or log a success message
-  else {
-    console.log("mongoose connection is successful");
-  }
+mongoose.connect(db, function (error) {
+    // Log any errors connecting with mongoose
+    if (error) {
+        console.log(error);
+    }
+    // Or log a success message
+    else {
+        console.log("mongoose connection is successful");
+        var trade = new Trade({ stock: 'LkE' });
+        User.findById(new mongoose.Types.ObjectId("599bb6f5ceb3db1a24fe7a26")).exec(function (err, user) {
+            trade.save(function (err, trade) {
+                user.trades.push(trade);
+            });
+        });
+
+        // var user = new User({name: 'Michael'});
+        // user.save(function(err){
+        //     trade._creator.push(user);
+        //     trade.save();
+        // });
+    }
 });
 // Listen on the port
-app.listen(PORT, function() {
-  console.log("Listening on port:" + PORT);
+app.listen(PORT, function () {
+    console.log("Listening on port:" + PORT);
 });
