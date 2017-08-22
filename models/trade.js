@@ -12,58 +12,30 @@ var tradeSchema = new Schema({
     stock: {
         type: String,
         required: true, 
-        unique: true 
     },
-
     // date is just a string   
     date: String,
     saved: { 
         type: Boolean,
         default: false 
     },
-    sellPrice: {
-        type: Float,
-        required: true
+    entryPrice: {
+        type: Number,
+    },
+    sellPositive: {
+        type: Number,
     }, 
-    lossPrice: {
-        type: Float,
-        required: true
-    },
-    maxStockQty:{
-        type: Float,
-        required: true
-    },
-     totalCost:{
-        type: Float,
-        required: true
-    },
-     compStat:{
-        type: String,
-        required: true
-    },
-     compStat:{
-        type: String,
-        required: true
-    },
-    currentGains:{
-        type: Float,
-        required: true
-    },
-    currentLosses:{
-        type: Float,
-        required: true
-    },
-    aveGains:{
-        type: Float,
-        required: true
-    },
-    aveLooses:{
-        type: Float,
-        required: true
-    }
+    sellNegative: {
+        type: Number,
+    }, 
+    accntSize: {
+        type: Number,
+        
+    }, 
+    _creator: [{type: Schema.Types.ObjectId, ref: "User"}]
 });
 // Create the Trade model using the ArticleSchema 
-var Trades = mongoose.model("Trades", tradeSchema);
+var Trade = mongoose.model("Trade", tradeSchema);
 // Export the Articles model
-module.exports = Trades;
+module.exports = Trade;
 
