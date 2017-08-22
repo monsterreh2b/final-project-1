@@ -9,7 +9,7 @@ var Schema = mongoose.Schema;
 // Create the tradeSchema with our schema class 
 var tradeSchema = new Schema({
     // Article, a string, must be entered   
-    title: {
+    stock: {
         type: String,
         required: true, 
         unique: true 
@@ -21,8 +21,44 @@ var tradeSchema = new Schema({
         type: Boolean,
         default: false 
     },
-    url: {
+    sellPrice: {
+        type: Float,
+        required: true
+    }, 
+    lossPrice: {
+        type: Float,
+        required: true
+    },
+    maxStockQty:{
+        type: Float,
+        required: true
+    },
+     totalCost:{
+        type: Float,
+        required: true
+    },
+     compStat:{
         type: String,
+        required: true
+    },
+     compStat:{
+        type: String,
+        required: true
+    },
+    currentGains:{
+        type: Float,
+        required: true
+    },
+    currentLosses:{
+        type: Float,
+        required: true
+    },
+    aveGains:{
+        type: Float,
+        required: true
+    },
+    aveLooses:{
+        type: Float,
         required: true
     }
 });
