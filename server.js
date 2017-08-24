@@ -48,18 +48,23 @@ mongoose.connect(db, function (error) {
     // Or log a success message
     else {
         console.log("mongoose connection is successful");
-        var trade = new Trade({ stock: 'LkE' });
-        User.findById(new mongoose.Types.ObjectId("599bb6f5ceb3db1a24fe7a26")).exec(function (err, user) {
-            trade.save(function (err, trade) {
-                user.trades.push(trade);
-            });
-        });
+        var user = new User({name: 'Michael', trades: ["599e3a382101ef1a0004b9a5", "599e3cdb2a778f04d84f0c5a" ]});
+        var trade = new Trade({ stock: 'LkE', _creator:  user._id});
+        // Trade.findById("",function (err, user) {
+           
+           
+       // });
 
         // var user = new User({name: 'Michael'});
-        // user.save(function(err){
-        //     trade._creator.push(user);
-        //     trade.save();
-        // });
+        user.save(function(err){
+            trade._creator.push(user);
+            console.log(user);
+            // trade.save();
+        });
+         trade.save(function (err, tr) {
+                console.log(tr);
+                user.trades.push(tr);
+         });
     }
 });
 // Listen on the port
