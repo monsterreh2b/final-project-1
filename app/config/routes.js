@@ -19,9 +19,9 @@ var browserHistory = router.browserHistory;
 
 // Reference the high-level components
 var Main = require("../components/Main");
-var Summary = require("../components/Summary");
+var Trading = require("../components/Trading");
 var Balances = require("../components/Balances");
-var Position = require("../components/Positions");
+var Portfolio = require("../components/Portfolio");
 var Login = require("../components/Login");
 
 // Export the Routes
@@ -32,8 +32,8 @@ module.exports = (
 
       {/* If user selects Search or Saved show the appropriate component */}
       <Route path="Balances" component={Balances} />
-      <Route path="Position" component={Position} />
-      <Route path="Summary" component={Summary} />
+      <Route path="Portfolio" component={Portfolio} />
+      <Route path="Trading" component={Trading} />
       <Route path="Login" component={Login} />
 
       {/* If user selects any other path... we get the Home Route */}

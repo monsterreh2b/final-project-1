@@ -9,8 +9,8 @@ var Results = require("./Search/Results");
 var Query = require("./Search/Query");
 var Balances = require("./Balances");
 var Login = require("./Login");
-var Positions = require("./Positions");
-var Summary = require("./Summary");
+var Portfolio = require("./Portfolio");
+var Trading = require("./Trading");
 
 // require helper for api calls
 var helpers = require("../utils/helpers");
@@ -18,99 +18,88 @@ var helpers = require("../utils/helpers");
 //create main component
 var Main = React.createClass({
 
-	// get initial state of component
-	getInitialState: function() {
+    render: function () {
 
-	return { topic: "" };
-	
-	},
+        return (
 
-	// run every time the component updates props or state
-	componentDidUpdate: function(prevProps, prevState) {
+            <div>
+                <main>
+                    <nav>
+                        <div className="nav-wrapper">
+                            <a href="#" className="brand-logo">The Trade App</a>
+                        </div>
+                    </nav>
+                    <div className="container">
+                        <div className="section"></div>
+                        <div className="section">
+                            <h5>Balances</h5>
+                        </div>
+                        <div className="section">
+                            <div className="row">
+                                <div className="col s12">
+                                    <ul className="tabs">
+                                        <li className="tab col s3"><a href="/portfolio">Portfolio</a></li>
+                                        <li className="tab col s3"><a href="/balances" className="active">Balances</a></li>
+                                        <li className="tab col s3"><a href="/trading">Trading</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <h5>Portfolio Value</h5>
+                        </div>
 
-		// If we have a new search term, run a new search
-		if (prevState.searchTerm !== this.state.searchTerm) {
+                        <div className="row">
+                            <div className="col s9">
+                                <table className="bordered">
+                                    <thead></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Portfolio Value</td>
+                                            <td className="text-right">$123,565.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Stock Positions</td>
+                                            <td className="text-right">6</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cash Balance</td>
+                                            <td className="text-right">$100,000.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-		helpers.runQuery(this.state.searchTerm).then(function(data) {
-
-			if (data !== this.state.results) {
-
-			console.log(data);
-
-			this.setState({ results: data });
-
-			}
-
-			// This code is necessary to bind the keyword "this" when we say this.setState
-			// to actually mean the component itself and not the runQuery function.
-		}.bind(this));
-
-		}
-
-	},
-
-	setTerm: function(topic) {
-
-		this.setState({ searchTerm: topic });
-		
-	},
-
-	render: function () {
-
-		return (
-
-			<div className="container">
-				<div className="row">
-					<div className="col-lg-12">
-						<nav className="navbar navbar-default">
-							<div className="container-fluid">
-								<div className="navbar-header">
-									<button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-										<span className="sr-only">Toggle navigation</span>
-										<span className="icon-bar">#</span>
-										<span className="icon-bar">#</span>
-										<span className="icon-bar">#</span>
-									</button>
-									<a className="navbar-brand" href="/">NYT-React</a>
-								</div>
-								<div className="collapse navbar-collapse navbar-ex1-collapse">
-									<ul className="nav navbar-nav navbar-right">
-										<li><a href="/search">Search</a></li>
-										<li><a href="/saved">Saved Articles</a></li>
-									</ul>
-								</div>
-							</div>
-						</nav>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-lg-12">
-						<div className="jumbotron">
-							<div className="container">
-								<h2 className="text-center"><strong>(ReactJS) New York Times Article Scrubber</strong></h2>
-								<h3 className="text-center">Search for and save articles of interest.</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-				{/* Search component goes here */}
-				<Search setTerm={this.setTerm} />
-
-				{/* Query component goes here */}
-				<Query />
-
-				{/* Results component goes here */}
-				<Results />
-
-				<footer>
-					<hr />
-					<p className="pull-right">
-						<i className="fa fa-github" aria-hidden="true"></i> Proudly built using React.js
-		        	</p>
-				</footer>
-			</div>
-		);
-	}
+                        <div className="row">
+                            <h5>Additional Information</h5>
+                        </div>
+                        <div className="row">
+                            <div className="col s9">
+                                <table className="bordered">
+                                    <thead></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Pending Purchases</td>
+                                            <td className="text-right">$0.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cash Balance</td>
+                                            <td className="text-right">$0.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Margin Balance</td>
+                                            <td className="text-right">$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        );
+    }
 });
 
 // export component for use in other files
