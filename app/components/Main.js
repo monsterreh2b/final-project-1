@@ -39,62 +39,19 @@ var Main = React.createClass({
                                 <div className="col s12">
                                     <ul className="tabs">
                                         <li className="tab col s3"><a href="/portfolio">Portfolio</a></li>
-                                        <li className="tab col s3"><a href="/balances" className="active">Balances</a></li>
+                                        <li className="tab col s3"><a href="/balances">Balances</a></li>
                                         <li className="tab col s3"><a href="/trading">Trading</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                            <h5>Portfolio Value</h5>
-                        </div>
 
-                        <div className="row">
-                            <div className="col s9">
-                                <table className="bordered">
-                                    <thead></thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Portfolio Value</td>
-                                            <td className="text-right">$123,565.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stock Positions</td>
-                                            <td className="text-right">6</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cash Balance</td>
-                                            <td className="text-right">$100,000.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                         <Portfolio />
 
-                        <div className="row">
-                            <h5>Additional Information</h5>
-                        </div>
-                        <div className="row">
-                            <div className="col s9">
-                                <table className="bordered">
-                                    <thead></thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Pending Purchases</td>
-                                            <td className="text-right">$0.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cash Balance</td>
-                                            <td className="text-right">$0.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Margin Balance</td>
-                                            <td className="text-right">$0.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                         <Balances /> 
+
+                         <Trading /> 
+
                     </div>
                 </main>
             </div>
