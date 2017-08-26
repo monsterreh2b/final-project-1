@@ -6,6 +6,8 @@ var Trade = require("./models/trade.js");
 var User = require("./models/user.js");
 //var cheerio = require("cheerio")
 var bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 // Bring in the Scrape function from our scripts directory
 //var scrape = require("./scripts/scrape.js");
 
@@ -25,6 +27,11 @@ var router = express.Router();
 //require("./config/routes")(router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'html');
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // Use bodyParser in our app
 app.use(bodyParser.urlencoded({
@@ -65,6 +72,11 @@ mongoose.connect(db, function (error) {
          });
     }
 });
+
+app.get("*", function(req, res) {
+ res.sendFile(__dirname + "/public/index.html");
+});
+
 // Listen on the port
 app.listen(PORT, function () {
     console.log("Listening on port:" + PORT);
