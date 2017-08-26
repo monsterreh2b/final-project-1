@@ -1,5 +1,3 @@
-
-
 // Require our dependencies
 var express = require("express");
 var mongoose = require("mongoose");
@@ -66,39 +64,6 @@ mongoose.connect(db, function (error) {
                 user.trades.push(tr);
          });
     }
-});
-// Route to get all saved trades
-app.get("/api/saved", function(req, res) {
-
-  Trade.find({})
-    .exec(function(err, doc) {
-
-      if (err) {
-        console.log(err);
-      }
-      else {
-        res.send(doc);
-      }
-    });
-});
-// Route to add a trade to saved list
-app.post("/api/saved", function(req, res) {
-  var newTrade = new Trade(req.body);
-
-  console.log(req.body);
-
-  newTrade.save(function(err, doc) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send(doc);
-    }
-  });
-});
-// Any non API GET routes will be directed to our React App and handled by React Router
-app.get("*", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
 });
 // Listen on the port
 app.listen(PORT, function () {
