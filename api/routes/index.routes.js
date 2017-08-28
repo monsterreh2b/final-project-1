@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const usersRoute = require("./users/users.route");
-const loginRoute = require("./login/auth.route");
+const usersRoute = require("./user/user.routes");
+const loginRoute = require("./login/login.routes");
 
 router.use("/users", (req, res) => {
     res.send('Successful');
