@@ -4,10 +4,10 @@ var mongoose = require("mongoose");
 var path = require("path");
 var Trade = require("./models/trade.js");
 var User = require("./models/user.js");
-//var cheerio = require("cheerio")
 var bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const apiRouter = require("./api/routes/index.routes");
 // Bring in the Scrape function from our scripts directory
 //var scrape = require("./scripts/scrape.js");
 
