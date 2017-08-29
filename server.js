@@ -2,12 +2,12 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var path = require("path");
-var Trade = require("./models/trade.js");
-var User = require("./models/user.js");
-//var cheerio = require("cheerio")
+var Trade = require("./api/models/trade");
+var User = require("./api/models/user");
 var bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const logger = require("morgan");
+const apiRouter = require("./api/routes/index.routes");
 // Bring in the Scrape function from our scripts directory
 //var scrape = require("./scripts/scrape.js");
 
@@ -41,6 +41,9 @@ app.use(bodyParser.urlencoded({
 // Have every request go through our router middleware
 app.use(router);
 
+//
+app.use("/api", apiRouter);
+
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoTrades";
 
@@ -53,29 +56,29 @@ mongoose.connect(db, function (error) {
     // Or log a success message
     else {
         console.log("mongoose connection is successful");
-        var user = new User({name: 'Michael', trades: ["599e3a382101ef1a0004b9a5", "599e3cdb2a778f04d84f0c5a" ]});
-        var trade = new Trade({ stock: 'LkE', _creator:  user._id});
+        //var user = new User({name: 'Michael', trades: ["599e3a382101ef1a0004b9a5", "599e3cdb2a778f04d84f0c5a" ]});
+        //var trade = new Trade({ stock: 'LkE', _creator:  user._id});
         // Trade.findById("",function (err, user) {
            
            
        // });
 
         // var user = new User({name: 'Michael'});
-        user.save(function(err){
-            trade._creator.push(user);
-            console.log(user);
-            // trade.save();
-        });
-         trade.save(function (err, tr) {
-                console.log(tr);
-                user.trades.push(tr);
-         });
+        // user.save(function(err){
+        //     trade._creator.push(user);
+        //     //console.log(user);
+        //     // trade.save();
+        // });
+        //  trade.save(function (err, tr) {
+        //         console.log(tr);
+        //         user.trades.push(tr);
+        //  });
     }
 });
 
-app.get("*", function(req, res) {
- res.sendFile(__dirname + "/public/index.html");
-});
+// app.get("*", function(req, res) {
+//  res.sendFile(__dirname + "/public/index.html");
+// });
 
 // Listen on the port
 app.listen(PORT, function () {
