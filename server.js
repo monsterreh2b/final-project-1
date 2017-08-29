@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Have every request go through our router middleware
-app.use(router);
+// app.use(router);
 
 //
 app.use("/api", apiRouter);
