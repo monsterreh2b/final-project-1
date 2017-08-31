@@ -23,6 +23,7 @@ var Trading = require("../components/Trading");
 var Balances = require("../components/Balances");
 var Portfolio = require("../components/Portfolio");
 var Login = require("../components/Login");
+var Nav = require("../components/Nav");
 
 // Export the Routes
 module.exports = (

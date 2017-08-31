@@ -1,7 +1,7 @@
 // Require our dependencies
-var express = require("express");
+var express = require('express');
 var mongoose = require("mongoose");
-var path = require("path");
+var path = require('path');
 var Trade = require("./api/models/trade");
 var User = require("./api/models/user");
 var bodyParser = require("body-parser");
@@ -76,9 +76,9 @@ mongoose.connect(db, function (error) {
     }
 });
 
-// app.get("*", function(req, res) {
-//  res.sendFile(__dirname + "/public/index.html");
-// });
+app.get("/*", function(req, res) {
+ res.sendFile(__dirname + "/public/index.html");
+});
 
 // Listen on the port
 app.listen(PORT, function () {
