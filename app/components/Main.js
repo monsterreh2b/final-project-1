@@ -10,6 +10,7 @@ var Balances = require("./Balances");
 var Login = require("./Login");
 var Portfolio = require("./Portfolio");
 var Trading = require("./Trading");
+var Nav = require("./Nav");
 
 // require helper for api calls
 var helpers = require("../utils/helpers");
@@ -33,23 +34,16 @@ var Main = React.createClass({
                         <div className="section">
                             <h5>Balances</h5>
                         </div>
-                        <div className="section">
-                            <div className="row">
-                                <div className="col s12">
-                                    <ul className="tabs">
-                                        <li className="tab col s3"><a href="/portfolio">Portfolio</a></li>
-                                        <li className="tab col s3"><a href="/balances">Balances</a></li>
-                                        <li className="tab col s3"><a href="/trading">Trading</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
 
-                         <Portfolio />
+                        <Login />
+                        
+                        <Nav />
 
-                         <Balances /> 
+                        <Portfolio />
 
-                         <Trading /> 
+                        <Balances /> 
+
+                        <Trading /> 
 
                     </div>
                 </main>
