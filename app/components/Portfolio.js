@@ -7,6 +7,7 @@ var Portfolio = React.createClass({
     render: function () {
 
         return (
+                
             <div className="row">
                 <div className="col s4">
                     <div className="row">

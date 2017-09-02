@@ -10,13 +10,13 @@ var Nav = React.createClass({
 
             <div>
 
-                <div class="section">
-                    <div class="row">
-                        <div class="col s12">
-                            <ul class="tabs">
-                                <li class="tab col s3"><a href="/portfolio">Portfolio</a></li>
-                                <li class="tab col s3"><a href="/balances" class="active">Balances</a></li>
-                                <li class="tab col s3"><a href="/trading">Trading</a></li>
+                <div className="section">
+                    <div className="row">
+                        <div className="col s12">
+                            <ul className="tabs">
+                                <li className="tab col s3"><a href="/portfolio">Portfolio</a></li>
+                                <li className="tab col s3"><a href="/balances">Balances</a></li>
+                                <li className="tab col s3"><a href="/trading">Trading</a></li>
                             </ul>
                         </div>
                     </div>
