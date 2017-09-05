@@ -7,9 +7,6 @@ var UserSchema = new Schema({
   name: {
     type: String
   },
-  date: {
-    type: Date
-  },
   email: {
     type: String
   },
