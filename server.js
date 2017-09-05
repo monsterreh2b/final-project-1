@@ -36,9 +36,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-
-
-//
 app.post('/login', (req, res) => {
     // QUERY DATABASE FOR USER INPUT EMAIL
     User.findOne({ email : req.body.email }) 
