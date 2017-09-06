@@ -5,7 +5,6 @@ var React = require("react");
 var Link = require("react-router").Link;
 
 // include all the sub-components
-
 var Balances = require("./Balances");
 var Login = require("./Login");
 var Portfolio = require("./Portfolio");

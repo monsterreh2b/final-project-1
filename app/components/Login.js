@@ -1,5 +1,6 @@
 // include react
 var React = require("react");
+var axios = require("axios")
 
 var loginStyle = {
     display: "inline-block",
@@ -7,10 +8,15 @@ var loginStyle = {
     border: "1px solid #EEE"
 };
 
-//create saved component
-var Login = React.createClass({
 
-    render: function () {
+// create saved component
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+            this.state = {user: '', email: '', password: ''};
+    }
+
+    render() {
 
         return (
 
@@ -23,26 +29,32 @@ var Login = React.createClass({
                     <div className="section"></div>
                     <div className="container">
                         <div className="z-depth-1 grey lighten-4 row" style={loginStyle}>
-                            <form className="col s12" method="post">
+                            <form className="col s12" method="post" onSubmit={this.handleSubmit}>
                                 <div className='row'>
                                     <div className='col s12'>
                                     </div>
                                 </div>
                                 <div className='row'>
                                     <div className='input-field col s12'>
-                                        <input className='validate' type='text' name='user' id='user' />
+                                        <input className='validate' type='text' name='user' id='user' value={this.state.user} onChange={(event) => {
+                                            this.setState({user: event.target.value});   
+                                        }} />
                                         <label htmlFor='user'>Username</label>
                                     </div>
                                 </div>                        
                                 <div className='row'>
                                     <div className='input-field col s12'>
-                                        <input className='validate' type='email' name='email' id='email' />
+                                        <input className='validate' type='email' name='email' id='email' value={this.state.email} onChange={(event) => {
+                                            this.setState({email: event.target.value});   
+                                        }} />
                                         <label htmlFor='email'>Email</label>
                                     </div>
                                 </div>
                                 <div className='row'>
                                     <div className='input-field col s12'>
-                                        <input className='validate' type='password' name='password' id='password' />
+                                        <input className='validate' type='password' name='password' id='password' value={this.state.password} onChange={(event) => {
+                                            this.setState({password: event.target.value});   
+                                        }} />
                                         <label htmlFor='password'>Password</label>
                                     </div>
                                     <label className="float-right">
@@ -58,15 +70,13 @@ var Login = React.createClass({
                             </form>
                         </div>
                     </div>
-                    <a href="#!">Create account</a>
                 </div>
 
             </div>
 
         );
     }
-});
-
+};
 
 // export component htmlFor use in other files
 module.exports = Login;
