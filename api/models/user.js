@@ -14,6 +14,9 @@ var UserSchema = new Schema({
     type: String,
     bcrypt: true
   },
+   salt: {
+    type: String,
+  },
   trades: [{type: Schema.Types.ObjectId, ref: "Trade"}]
 });
 

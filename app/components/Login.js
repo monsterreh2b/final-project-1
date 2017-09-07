@@ -1,27 +1,60 @@
-// include react
-var React = require("react");
-var axios = require("axios")
 
+// include react
+
+import React, { Component } from 'react';
+var axios = require("axios");
 var loginStyle = {
     display: "inline-block",
     padding: "32px 48px 0px 48px",
     border: "1px solid #EEE"
 };
 
-
-// create saved component
-class Login extends React.Component {
+//create saved component
+//var Login = React.createComponent({
+class Login extends Component {
     constructor(props) {
         super(props);
-            this.state = {user: '', email: '', password: ''};
+        this.state = {
+            email: '',
+            pass: ''
+        };
+        this.onEmailChange = this.onEmailChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.signIn = this.signIn.bind(this);
     }
+
+    onEmailChange(event) {
+       
+        this.setState({ email: event.target.value });
+         console.log(this.state.email);
+    }
+
+    onPasswordChange(event) {
+        this.setState({ pass: event.target.value });
+    }
+
+    signIn(event) {
+        event.preventDefault();
+        console.log("here", this.state);
+        axios.post('/login', this.state)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log('Error signing in: ', err);
+                this.setState({ pass: '', email: '' });
+            });
+    }
+
+
+    //onclick function /form submit
 
     render() {
 
         return (
 
             <div>
-            
+
                 <div className="center">
                     <h2>The Trade App<sup>®</sup></h2>
                     <div className="section"></div>
@@ -34,37 +67,26 @@ class Login extends React.Component {
                                     <div className='col s12'>
                                     </div>
                                 </div>
+                            
                                 <div className='row'>
                                     <div className='input-field col s12'>
-                                        <input className='validate' type='text' name='user' id='user' value={this.state.user} onChange={(event) => {
-                                            this.setState({user: event.target.value});   
-                                        }} />
-                                        <label htmlFor='user'>Username</label>
-                                    </div>
-                                </div>                        
-                                <div className='row'>
-                                    <div className='input-field col s12'>
-                                        <input className='validate' type='email' name='email' id='email' value={this.state.email} onChange={(event) => {
-                                            this.setState({email: event.target.value});   
-                                        }} />
+                                        <input className='validate' type='email' name='email' id='email' onChange={this.onEmailChange}/>
+
                                         <label htmlFor='email'>Email</label>
                                     </div>
                                 </div>
                                 <div className='row'>
                                     <div className='input-field col s12'>
-                                        <input className='validate' type='password' name='password' id='password' value={this.state.password} onChange={(event) => {
-                                            this.setState({password: event.target.value});   
-                                        }} />
+                                        <input className='validate' type='password' name='password' id='password' onChange={this.onPasswordChange} />
+
                                         <label htmlFor='password'>Password</label>
                                     </div>
-                                    <label className="float-right">
-                                        <a className='pink-text' href='#!'><b>Forgot Password?</b></a>
-                                    </label>
+
                                 </div>
                                 <br />
                                 <div className="center">
                                     <div className='row'>
-                                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo'>Login</button>
+                                        <button type='submit' name='btn_login' className='col s12 btn btn-large waves-effect indigo' onClick={this.signIn}>Login</button>
                                     </div>
                                 </div>
                             </form>
@@ -76,7 +98,9 @@ class Login extends React.Component {
 
         );
     }
-};
+
+}
+
 
 // export component htmlFor use in other files
 module.exports = Login;

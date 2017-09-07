@@ -9,24 +9,8 @@ const someOtherPlaintextPassword = 'not_bacon';
 var saltNum = 10;
 const jwt = require('jsonwebtoken');
 
+//const sign_up = require("../sign_up/sign_up.routes");
 
-var user = new User({ name: 'Maria', email: 'maria@me.com', pass: '123', trades: ["599e3a382101ef1a0004b9a5", "599e3cdb2a778f04d84f0c5a"] });
-var trade = new Trade({ stock: 'LkE', _creator: user._id });
-// Trade.findById("",function (err, user) {
-
-
-// });
-
-//var user = new User({name: 'Michael'});
-user.save(function (err) {
-    trade._creator.push(user);
-    console.log(user);
-    trade.save();
-});
-trade.save(function (err, tr) {
-    console.log(tr);
-    user.trades.push(tr);
-});
 // TEST
 // var req = {
 //     email: 'asdf@asdf.com',
@@ -34,57 +18,60 @@ trade.save(function (err, tr) {
 // };
 
 //check if the user is a new user
-router.post('/', (req, res) => {
-    User.findOne({ email: req.body.email })
-        .then((data) => {
+// router.post('/singUP', (req, res) => {
+//     User.findOne({ email: req.body.email })
+//         .then((data) => {
 
-            res.json({
-                success: false,
-                message: 'This Email Address is Already Registered!',
-                token: null
-            }).catch((err) => {
-                res.json(err);
-            });
-        }
-        );
-    var hash = bcrypt.hashSync(req.body.password, data.salt);
-    var user = new User(req.body);
-    user.save(function (err) {
-        trade._creator.push(user);
-        console.log(user);
-        trade.save();
-    });
-});
+//             res.json({
+//                 success: false,
+//                 message: 'This Email Address is Already Registered!',
+//                 token: null
+//             }).catch((err) => {
+//                 res.json(err);
+//             });
+//         }
+//         );
+//     var hash = bcrypt.hashSync(req.body.password, data.salt);
+//     var user = new User(req.body);
+//     user.save(function (err) {
+//         trade._creator.push(user);
+//         console.log(user);
+//         trade.save();
+//     });
+// });
 
-    bcrypt.genSalt(saltNum, function (err, salt) {
-        bcrypt.hash(myPlaintextPassword, salt, function (err, hash) {
-            console.log(hash);
-
-        });
-    });
+ 
     // LOGIN ROUTE 
-    router.post('/', (req, res) => {
+    router.post('/login', (req, res) => {
+        //hash and evaluate req.body.pass
+        //send 200 response
+        //if the response is 200 redirect them to index.html
+        //if the pass is incorect send them a 401 response 
+        //put an alert or a modal saying the bad pass
         // QUERY DATABASE FOR USER INPUT EMAIL
+        console.log("here is the body", req.body)
         User.findOne({ email: req.body.email })
 
             // IF USER EXISTS, THEN HASH PASSWORD AND CHECK HASH-TO-PASSWORD
             .then((data) => {
-                //console.log(data);
-                var hash = bcrypt.hashSync(req.body.password, data.salt);
+                console.log(data);
+                var hash = bcrypt.hashSync(req.body.pass, data.salt);
+                console.log(process.env.SECRET_WORD);
 
-                if (data.password === hash) {
+                if (data.pass === hash) {
                     var token = jwt.sign({
                         'email': data.email
-                    }, process.env.SECRET_WORD, {
-                            expires: '24h'
+                    }, "secret", {
+                            expiresIn: '24h'
                         });
-
+                    res.status(200);
                     res.json({
                         success: true,
                         message: 'Token ready',
                         token: token
                     });
                 } else {
+                    res.status(401);
                     res.json({
                         success: false,
                         message: 'Incorrect login information',
@@ -95,6 +82,8 @@ router.post('/', (req, res) => {
 
             // ERROR IF EMAIL DOES Not EXIST
             .catch((err) => {
+                res.status(500);
+                console.log(err);
                 res.json({
                     success: false,
                     message: 'User not found',
