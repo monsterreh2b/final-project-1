@@ -7,6 +7,8 @@ var Portfolio = React.createClass({
     render: function () {
 
         return (
+
+            <div>
                 
             <div className="row">
                 <div className="col s4">
@@ -59,6 +61,8 @@ var Portfolio = React.createClass({
                         </div>
                     </div>
                 </div>
+            </div>
+
             </div>
 
         );

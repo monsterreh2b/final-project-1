@@ -15,7 +15,7 @@ var Trading = React.createClass({
                         <div className="input-field col s6">
                             <i className="material-icons prefix">search</i>
                             <input id="icon_prefix" type="text" className="validate" />
-                            <label htmlFor="icon_prefix">Stock Search</label>
+                            <label htmlFor="icon_prefix"></label>
                         </div>
                         <div className="input-field col s6">
                             <a className="waves-effect waves-light btn">Search</a>
@@ -147,12 +147,6 @@ var Trading = React.createClass({
                         </table>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col s12">
-                        <p>Chart goes here...</p>
-                    </div>
-                </div>
-
             </div>
 
         );

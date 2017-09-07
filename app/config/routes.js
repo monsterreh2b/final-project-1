@@ -26,20 +26,26 @@ var Login = require("../components/Login");
 var Nav = require("../components/Nav");
 
 // Export the Routes
-module.exports = (
-  // High level component is the Router component.
-  <Router history={browserHistory}>
-    <Route path="/" component={Main}>
+var Routes = React.createClass({
+    render() {
+        return (
+            // High level component is the Router component.
+            <Router history={browserHistory}>
+                <Route path="/" component={Main}>
 
-      {/* If user selects Search or Saved show the appropriate component */}
-      <Route path="Balances" component={Balances} />
-      <Route path="Portfolio" component={Portfolio} />
-      <Route path="Trading" component={Trading} />
-      <Route path="Login" component={Login} />
+                    {/* If user selects Search or Saved show the appropriate component */}
+                    <Route path="Balances" component={Balances} />
+                    <Route path="Portfolio" component={Portfolio} />
+                    <Route path="Trading" component={Trading} />
+                    <Route path="Login" component={Login} />
 
-      {/* If user selects any other path... we get the Home Route */}
-      <IndexRoute component={Login} />
+                    {/* If user selects any other path... we get the Home Route */}
+                    <IndexRoute component={Login} />
 
-    </Route>
-  </Router>
-);
+                </Route>
+            </Router>
+        )
+    }
+})
+module.exports = Routes;
+
