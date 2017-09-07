@@ -9,7 +9,6 @@ var Balances = React.createClass({
         return (
 
             <div>
-
                 <div className="row">
                     <h5>Portfolio Value</h5>
                 </div>

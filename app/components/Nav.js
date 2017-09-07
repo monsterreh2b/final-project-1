@@ -14,9 +14,9 @@ var Nav = React.createClass({
                     <div className="row">
                         <div className="col s12">
                             <ul className="tabs">
-                                <li className="tab col s3"><a href="/portfolio">Portfolio</a></li>
-                                <li className="tab col s3"><a href="/balances">Balances</a></li>
-                                <li className="tab col s3"><a href="/trading">Trading</a></li>
+                                <li className="tab col s3"><Link to="/Portfolio">Portfolio</Link></li>
+                                <li className="tab col s3"><Link to="/Balances">Balances</Link></li>
+                                <li className="tab col s3"><Link to="/Trading">Trading</Link></li>
                             </ul>
                         </div>
                     </div>

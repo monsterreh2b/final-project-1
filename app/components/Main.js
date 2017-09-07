@@ -31,18 +31,24 @@ var Main = React.createClass({
                     <div className="container">
                         <div className="section"></div>
                         <div className="section">
-                            <h5>Balances</h5>
+                            <div className="section">
+                                <div className="row">
+                                    <div className="col s12">
+                                        <ul className="tabs">
+                                            <li className="tab col s3"><Link to="/Portfolio">Portfolio</Link></li>
+                                            <li className="tab col s3"><Link to="/Balances">Balances</Link></li>
+                                            <li className="tab col s3"><Link to="/Trading">Trading</Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <Login />
-                        
-                        <Nav />
+                        {/* <Login /> */}
 
-                        <Portfolio />
+                        {/* <Nav /> */}
 
-                        <Balances /> 
-
-                        <Trading /> 
+                        {this.props.children}
 
                     </div>
                 </main>
