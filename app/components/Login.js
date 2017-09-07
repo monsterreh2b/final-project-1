@@ -1,9 +1,8 @@
 
 // include react
+
 import React, { Component } from 'react';
 var axios = require("axios");
-
-
 var loginStyle = {
     display: "inline-block",
     padding: "32px 48px 0px 48px",
@@ -63,7 +62,7 @@ class Login extends Component {
                     <div className="section"></div>
                     <div className="container">
                         <div className="z-depth-1 grey lighten-4 row" style={loginStyle}>
-                            <form className="col s12" method="post">
+                            <form className="col s12" method="post" onSubmit={this.handleSubmit}>
                                 <div className='row'>
                                     <div className='col s12'>
                                     </div>
@@ -72,12 +71,14 @@ class Login extends Component {
                                 <div className='row'>
                                     <div className='input-field col s12'>
                                         <input className='validate' type='email' name='email' id='email' onChange={this.onEmailChange}/>
+
                                         <label htmlFor='email'>Email</label>
                                     </div>
                                 </div>
                                 <div className='row'>
                                     <div className='input-field col s12'>
                                         <input className='validate' type='password' name='password' id='password' onChange={this.onPasswordChange} />
+
                                         <label htmlFor='password'>Password</label>
                                     </div>
 
@@ -91,7 +92,6 @@ class Login extends Component {
                             </form>
                         </div>
                     </div>
-                    <a href="#!">Create account</a>
                 </div>
 
             </div>
@@ -100,6 +100,7 @@ class Login extends Component {
     }
 
 }
+
 
 // export component htmlFor use in other files
 module.exports = Login;
