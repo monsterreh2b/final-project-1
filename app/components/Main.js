@@ -10,6 +10,7 @@ var Login = require("./Login");
 var Portfolio = require("./Portfolio");
 var Trading = require("./Trading");
 var Nav = require("./Nav");
+// var Modal = require("./modal");
 
 // require helper for api calls
 var helpers = require("../utils/helpers");

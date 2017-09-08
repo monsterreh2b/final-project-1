@@ -38,10 +38,15 @@ class Login extends Component {
         console.log("here", this.state);
         axios.post('/login', this.state)
             .then((res) => {
-                console.log(res);
+                
+                this.props.history.push('/Portfolio');
+                console.log("statussssssssssssssss" ,res.status);
             })
             .catch((err) => {
+
+               alert("Invalid Username or Password! Please Try Again.");
                 console.log('Error signing in: ', err);
+             
                 this.setState({ pass: '', email: '' });
             });
     }
@@ -69,14 +74,12 @@ class Login extends Component {
                                 </div>
                                 <div className='row'>
                                     <div className='input-field col s12'>
-                                        <div htmlFor='email'>Email</div>
-                                        <input className='validate' type='email' name='email' id='email' onChange={this.onEmailChange}/>
+                                        <p htmlFor='email'>Email <input className='validate align-right' type='email' name='email' id='email' onChange={this.onEmailChange}/></p>
                                     </div>
                                 </div>
                                 <div className='row'>
                                     <div className='input-field col s12'>
-                                        <div htmlFor='password'>Password</div>                                        
-                                        <input className='validate' type='password' name='password' id='password' onChange={this.onPasswordChange} />
+                                        <p htmlFor='password'>Password <input className='validate' type='password' name='password' id='password' onChange={this.onPasswordChange} /></p>
                                     </div>
                                 </div>
                                 <br />
