@@ -10,6 +10,20 @@ var Trading = React.createClass({
 
             <div>
 
+                <div className="section">
+                    <div className="section">
+                        <div className="row">
+                            <div className="col s12">
+                                <ul className="tabs">
+                                    <li className="tab col s3"><Link to="/Portfolio">Portfolio</Link></li>
+                                    <li className="tab col s3"><Link to="/Balances">Balances</Link></li>
+                                    <li className="tab col s3"><Link to="/Trading">Trading</Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="row">
                     <form className="col s12">
                         <div className="input-field col s6">
