@@ -31,7 +31,7 @@ var Main = React.createClass({
                     </nav>
                     <div className="container">
                         <div className="section"></div>
-                        <div className="section">
+                        {/* <div className="section">
                             <div className="section">
                                 <div className="row">
                                     <div className="col s12">
@@ -43,7 +43,7 @@ var Main = React.createClass({
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* <Login /> */}
 
