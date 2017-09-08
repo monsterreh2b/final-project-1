@@ -24,6 +24,7 @@ var Balances = require("../components/Balances");
 var Portfolio = require("../components/Portfolio");
 var Login = require("../components/Login");
 var Nav = require("../components/Nav");
+//var Modal = require("../components/modal");
 
 // Export the Routes
 var Routes = React.createClass({
@@ -38,6 +39,7 @@ var Routes = React.createClass({
                     <Route path="Portfolio" component={Portfolio} />
                     <Route path="Trading" component={Trading} />
                     <Route path="Login" component={Login} />
+                    
 
                     {/* If user selects any other path... we get the Home Route */}
                     <IndexRoute component={Login} />
