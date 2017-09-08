@@ -9,6 +9,21 @@ var Balances = React.createClass({
         return (
 
             <div>
+
+                <div className="section">
+                    <div className="section">
+                        <div className="row">
+                            <div className="col s12">
+                                <ul className="tabs">
+                                    <li className="tab col s3"><Link to="/Portfolio">Portfolio</Link></li>
+                                    <li className="tab col s3"><Link to="/Balances">Balances</Link></li>
+                                    <li className="tab col s3"><Link to="/Trading">Trading</Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="row">
                     <h5>Portfolio Value</h5>
                 </div>

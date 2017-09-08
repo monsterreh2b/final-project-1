@@ -67,21 +67,17 @@ class Login extends Component {
                                     <div className='col s12'>
                                     </div>
                                 </div>
-                            
                                 <div className='row'>
                                     <div className='input-field col s12'>
+                                        <div htmlFor='email'>Email</div>
                                         <input className='validate' type='email' name='email' id='email' onChange={this.onEmailChange}/>
-
-                                        <label htmlFor='email'>Email</label>
                                     </div>
                                 </div>
                                 <div className='row'>
                                     <div className='input-field col s12'>
+                                        <div htmlFor='password'>Password</div>                                        
                                         <input className='validate' type='password' name='password' id='password' onChange={this.onPasswordChange} />
-
-                                        <label htmlFor='password'>Password</label>
                                     </div>
-
                                 </div>
                                 <br />
                                 <div className="center">
