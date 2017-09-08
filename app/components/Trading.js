@@ -1,38 +1,74 @@
 // include react
 var React = require("react");
+var axios = require("axios");
 
 //create saved component
-var Trading = React.createClass({
+class Trading extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            reports: [],
+            searchText: ''
+        }
+        this.search = this.search.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
 
-    render: function () {
+    updateStateReports(data) {
+        const timesSeries = data['Time Series (Daily)'];
+        const newReports = [];
+        Object.keys(timesSeries).slice(0, 5).forEach((key, index) => {
+            newReports.push(timesSeries[key])
+        });
+        this.setState({ reports: newReports });
+    }
 
+    getResultsElements() {
+        const elements = this.state.reports.map((report, index) => {
+            return (
+                <div key={index} className="col s2">
+                    <div className="card-panel">
+                        <div className="text-center">
+                            <div>Last Price</div>
+                            <div>{report['4. close']}</div>
+                        </div>
+                    </div>
+                </div>
+            );
+        });
+        return elements;
+    }
+
+    search(event) {
+        event.preventDefault();
+        const { searchText } = this.state;
+        axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${searchText}&apikey=0X6T0ARD2UNWMQZG`)
+            .then(res => {
+                this.updateStateReports(res.data);
+            })
+            .catch(err => {
+                return console.log(err);
+            })
+    }
+
+    handleInputChange(event) {
+        this.setState({ searchText: event.target.value });
+    }
+
+    render() {
         return (
 
             <div>
 
-                <div className="section">
-                    <div className="section">
-                        <div className="row">
-                            <div className="col s12">
-                                <ul className="tabs">
-                                    <li className="tab col s3"><Link to="/Portfolio">Portfolio</Link></li>
-                                    <li className="tab col s3"><Link to="/Balances">Balances</Link></li>
-                                    <li className="tab col s3"><Link to="/Trading">Trading</Link></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div className="row">
-                    <form className="col s12">
+                    <form className="col s12" onSubmit={this.search}>
                         <div className="input-field col s6">
                             <i className="material-icons prefix">search</i>
-                            <input id="icon_prefix" type="text" className="validate" />
-                            <label htmlFor="icon_prefix"></label>
+                            <input id="icon_prefix" type="text" className="validate" value={this.state.searchText} onChange={this.handleInputChange} />
+                            <label for="icon_prefix">Stock Search</label>
                         </div>
                         <div className="input-field col s6">
-                            <a className="waves-effect waves-light btn">Search</a>
+                            <a className="waves-effect waves-light btn" onClick={this.search}>Search</a>
                         </div>
                     </form>
                 </div>
@@ -40,54 +76,7 @@ var Trading = React.createClass({
                     <h5>Stock Name</h5>
                 </div>
                 <div className="row">
-                    <div className="col s2">
-                        <div className="card-panel">
-                            <div className="text-center">
-                                <div>Last Price</div>
-                                <div>157.50</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col s2">
-                        <div className="card-panel">
-                            <div className="text-center">
-                                <div>Today's Change</div>
-                                <div>-0.360 (-0.23%)</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col s2">
-                        <div className="card-panel">
-                            <div className="text-center">
-                                <div>Bid (Size)</div>
-                                <div>157.25</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col s2">
-                        <div className="card-panel">
-                            <div className="text-center">
-                                <div>Ask (Size)</div>
-                                <div>157.30</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col s2">
-                        <div className="card-panel">
-                            <div className="text-center">
-                                <div>Day's Range</div>
-                                <div>156.72 - 159.50</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col s2">
-                        <div className="card-panel">
-                            <div className="text-center">
-                                <div>Volume</div>
-                                <div>27,428,069</div>
-                            </div>
-                        </div>
-                    </div>
+                    {this.getResultsElements()}
                 </div>
                 <div className="row">
                     <div className="col s6">
@@ -161,11 +150,17 @@ var Trading = React.createClass({
                         </table>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col s12">
+                        <p>Chart goes here...</p>
+                    </div>
+                </div>
+
             </div>
 
         );
     }
-});
+}
 
 // export component for use in other files
 module.exports = Trading;

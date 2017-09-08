@@ -20,14 +20,17 @@
     "mongoose": "^4.11.8",
     "morgan": "^1.8.2",
     "path": "^0.12.7",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-router": "^2.4.1"
+    "react": "15.0.2",
+    "react-dom": "15.0.2",
+    "react-router": "2.4.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^3.5.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "npm run webpack-bundle && node server.js",
+    "webpack-bundle": "webpack --config=webpack.config.js"
   },
   "repository": {
     "type": "git",
